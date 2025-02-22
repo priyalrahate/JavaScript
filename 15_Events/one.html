@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+</head>
+<body>
+    
+    <script>
+        // document.getElementById('owl').onclick = function(){
+        //     alert('owl clicked');
+        // } // owl clicked 
+
+        document.getElementById('owl').addEventListener('click',function(e){
+            console.log(e);
+        },false) // this false value indicates-event bubbling -- innner event is done first.
+                // and true value indicates event capturing 
+
+
+
+        // type, timestamp,defaultPrevented
+        // target ,toElement,srcElement,currentTarget,
+        // clientX, xlientY,screenX, screenY
+        //altkey,ctrlkey,shiftkey,keycode
+        
+        document.getElementById('images').addEventListener('click',function(e){
+            console.log("clicked inside the ul");
+        },false)
+
+        document.getElementById('owl').addEventListener('click',function(e){
+            console.log("owl clicked");
+            e.stopPropagation();
+        },false)
+        
+        document.getElementById('owl').addEventListener('click',function(e){
+            e.preventDefault()
+            console.log("google clicked");
+        },false)
+
+        document.getElementById('google').addEventListener
+        ('click',function(){
+            console.log("google clicked");
+           e.preventDefault();  
+        },false)
+
+        document.querySelector('#images').addEventListener('click',function(e){
+                console.log(e.target.parentNode);
+                 
+                if(e.target.tagName==='IMG'){
+                    console.log(e.target.id );
+                    let removeIt=e.target.parentNode
+                    removeIt.remove();
+                }
+
+        },false)
+
+        
+    </script>
+</body>
+</html>
